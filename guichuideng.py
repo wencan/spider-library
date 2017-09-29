@@ -5,11 +5,8 @@ import requests
 import lxml
 import lxml.html
 import lxml.etree
-import urllib.parse
 import parse
 import chardet
-import os.path
-import io
 import time
 from docx import Document
 
@@ -64,14 +61,7 @@ def get(url, encoding='utf-8', sleep_seconds=0):
         encoding = chardet.detect(r.content)["encoding"]
         text = r.content.decode(encoding)
 
-    args = parse.parse('''{}self.location = "{}";{}''', text)
-    if args:
-        target = args[1]
-        url = urllib.parse.urljoin(url, target)
-
-        return get(url, encoding)
-    else:
-        return text
+    return text
 
 
 # chapter
