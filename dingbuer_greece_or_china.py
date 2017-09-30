@@ -17,7 +17,7 @@ import io
 from docx import Document
 from docx.image.exceptions import UnrecognizedImageError
 from docx.enum.text import WD_ALIGN_PARAGRAPH
-from docx.shared import Pt
+from docx.shared import Pt, Cm
 
 
 home = "http://www.ikexue.org/specials/dingbuer_greece_or_china"
@@ -180,7 +180,7 @@ def get_paragraphs(section_url, encoding="UTF-8"):
 doc = Document()
 preface, chapters = get_preface_and_chapters(home)
 p = doc.add_paragraph(preface)
-p.paragraph_format.first_line_indent = Pt(22)
+p.paragraph_format.first_line_indent = Cm(0.74)
 
 for chapter in chapters:
     p = doc.add_heading(chapter.title, 1)
@@ -229,6 +229,6 @@ for chapter in chapters:
 
             elif paragraph.text:
                 p = doc.add_paragraph(paragraph.text)
-                p.paragraph_format.first_line_indent = Pt(22)
+                p.paragraph_format.first_line_indent = Cm(0.74)
 
 doc.save("言必称希腊还是言必称中国.docx")
